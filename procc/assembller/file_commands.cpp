@@ -1,6 +1,6 @@
 #include "file_commands.h"
 
-char** glue_of_functio(int& count_operation, int& lines_num)
+char** glue_of_functio(size_t& count_operation, int& lines_num)
 {
     size_t number_char_in_file = number_of_file();
 
@@ -45,6 +45,7 @@ char* file_pointer_read()
     }
 
     size_t count = fread(ptr, sizeof(char), number_char, fp );
+    ASSCANF(count);
 
     fclose (fp);
 

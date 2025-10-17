@@ -90,6 +90,9 @@ int resume_calc(TO_MUSH_ARG)
     LOGIC(_FUNCN_, for_functions);
 
     LOGIC(_MEMOR_, work_with_memory);
+
+    LOGIC(_INT_,   steck_fucn);
     
     return ER_R_OR;
 }
+

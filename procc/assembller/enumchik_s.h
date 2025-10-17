@@ -66,18 +66,18 @@ typedef int ans_typ;
 
 struct SPU
 {
-    int* ram = 0;
-    stk start_stk = {};
-    stk stk_ret = {};
+    int* ram       = 0;
+    stk  start_stk = {};
+    stk  stk_ret   = {};
 };
 
 
 struct operatio
 {
-    char opera[16];
-    int  maska;
-    int  len_len;
-    int  need_param;
+    char    opera[16];
+    int     maska;
+    size_t  len_len;
+    int     need_param;
 };
 
 
@@ -117,12 +117,14 @@ enum calcic
     _MEMOR_ = 0x00000110,
     POPM_   = 0x00000220,
     PUSHM_  = 0x00000330,
+
+    _INT_    = 0x00100000,
 };
 
 enum er_sC
 {
     SU_CC_ESS = 1,
-    ER_R_OR = 911
+    ER_R_OR   = 911
 };
 
 #endif

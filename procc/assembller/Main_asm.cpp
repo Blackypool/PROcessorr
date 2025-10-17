@@ -1,14 +1,12 @@
 #include "enumchik_s.h"
 #include "type_of_opera.h"
 
-#define NAME_FILE "quadr_into_txt.txt"
-
 void nahui_is_compilatora(int *hranilische, size_t number_of);
 
 
 int main()
 {
-    int count_operation = 0;
+    size_t count_operation = 0;
     int lines_num = 0;
 
     int* black_metka = find_treasure(NUM_label_ss);

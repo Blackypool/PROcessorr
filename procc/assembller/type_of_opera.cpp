@@ -24,6 +24,7 @@ static const struct operatio oper[] = {
                          {"CALL", CALL_, 4, 1}, //19
                                               {"POPM",  POPM_, 4, 1},//20
                                                {"PUSHM", PUSHM_, 5, 1},//21
+                            {"INT",  _INT_,  3, 0}, //22
                     
                                        };
 
@@ -66,7 +67,7 @@ int choose_operatia(char** str_str, int *lin, int *black_metka)
         int ret = sscanf(str_str[*lin] + 1, " %d ", &def);
         ASSCANF(ret);
 
-        *lin++;
+        (*lin)++;
         black_metka[def] = *lin;
     }
 
@@ -101,7 +102,7 @@ int need_param(char** str_str, int lin, int *black_metka, int oper_find)
     return -1;
 }
 
-int* find_treasure(int number_of_metok)
+int* find_treasure(size_t number_of_metok)
 {
     int *black_metka = (int*) calloc(number_of_metok, sizeof(int));
     ASSERTICHE(black_metka, NULL);

@@ -1,17 +1,3 @@
-
-call :9 //call 6 
-
-push 80
-
-:9
-    push 60
-    ret
-
-
-call :9
-
-:9
-
 PUSH 1
 POPREG AX
 PUSH -5
@@ -48,8 +34,3 @@ MUL
 DIV
 OUT
 HLT
-
-
-
-: 5 
-call :8

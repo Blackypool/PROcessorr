@@ -31,4 +31,6 @@ int for_functions(TO_MUSH_ARG);
 
 int work_with_memory (TO_MUSH_ARG);
 
+int in_func(TO_MUSH_ARG);
+
 #endif

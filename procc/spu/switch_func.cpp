@@ -134,7 +134,7 @@ int jump_mishki_gammy(TO_MUSH_ARG)
             break;
 
         case JB_:
-                ST_PP_JUMP(data, v_2 < v_1);
+                ST_PP_JUMP(data, v_2 <  v_1);
 
             break;
             
@@ -144,7 +144,7 @@ int jump_mishki_gammy(TO_MUSH_ARG)
             break;
 
         case JA_:
-                ST_PP_JUMP(data, v_2 > v_1);
+                ST_PP_JUMP(data, v_2 >  v_1);
 
             break;
 
@@ -159,7 +159,7 @@ int jump_mishki_gammy(TO_MUSH_ARG)
             break;
 
         case JNE_:
-                ST_PP_JUMP(data, v_2 != v_1);
+                ST_PP_JUMP(data, v_2 != v_2);
 
             break;
 
@@ -223,3 +223,10 @@ int work_with_memory (TO_MUSH_ARG)
     }
 }
 
+int in_func(TO_MUSH_ARG)
+{
+    printf("enter number");
+    int value = 0;
+    scanf("%d", &value);
+    stack_push(data, value);
+}

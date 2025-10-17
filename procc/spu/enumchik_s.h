@@ -25,7 +25,7 @@ enum for_user
 
 #include "constructor.h"
 #include "push_pop.h"
-#include "file_commands.h"
+// #include "file_commands.h"
 
 typedef int ans_typ;
 
@@ -117,6 +117,8 @@ enum calcic
     _MEMOR_ = 0x00000110,
     POPM_   = 0x00000220,
     PUSHM_  = 0x00000330,
+
+    _INT_    = 0x00100000,
 };
 
 enum er_sC
