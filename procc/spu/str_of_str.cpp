@@ -3,10 +3,10 @@
 
 char** v_str_ku(char *full_asm, int lines_num, size_t number_char_in_file)
 {
-    ASSERTICHE(full_asm);
+    ASSERTICHE(full_asm, NULL);
 
     char **str_str = (char**) calloc((size_t)lines_num + 1, sizeof(char*)); //массив указателей на строки
-    ASSERTICHE(str_str);
+    ASSERTICHE(str_str, NULL);
     
     int sch = 0;
     while(full_asm[sch] != '\0')

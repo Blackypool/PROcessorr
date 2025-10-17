@@ -6,18 +6,21 @@ int calcc_func(TO_MUSH_ARG)
         {
 
             case ADD_:
+            {
                 ST_PP_CALC(data, v_1 + v_2);
-
+            }
             break;
 
             case SUB_:
+            {
                 ST_PP_CALC(data, v_2 - v_1);
-
+            }
             break;
 
             case MUL_:
+            {
                 ST_PP_CALC(data, v_1 * v_2);
-
+            }
             break;
         
             case DIV_:
@@ -35,8 +38,9 @@ int calcc_func(TO_MUSH_ARG)
             break;
                 
             case POW_:
+            {
                 ST_PP_CALC(data, pow(v_2, v_1));                
-            
+            }
             break;
 
             case SQRT_:
@@ -134,33 +138,39 @@ int jump_mishki_gammy(TO_MUSH_ARG)
             break;
 
         case JB_:
-                ST_PP_JUMP(data, v_2 <  v_1);
-
+        {
+            ST_PP_JUMP(data, v_2 <  v_1);
+        }
             break;
             
         case JBE_:
-                ST_PP_JUMP(data, v_2 <= v_1);
-
+        {
+            ST_PP_JUMP(data, v_2 <= v_1);
+        }
             break;
 
         case JA_:
-                ST_PP_JUMP(data, v_2 >  v_1);
-
+        {
+            ST_PP_JUMP(data, v_2 >  v_1);
+        }
             break;
 
         case JAE_:
-                ST_PP_JUMP(data, v_2 >= v_1);
-
+        {
+            ST_PP_JUMP(data, v_2 >= v_1);
+        }
             break;
 
         case JE_:
-                ST_PP_JUMP(data, v_2 == v_1);
-
+        {
+            ST_PP_JUMP(data, v_2 == v_1);
+        }
             break;
 
         case JNE_:
-                ST_PP_JUMP(data, v_2 != v_2);
-
+        {
+            ST_PP_JUMP(data, v_2 != v_2);
+        }
             break;
 
         default: break;
@@ -172,6 +182,7 @@ int for_functions(TO_MUSH_ARG)
 {
     switch (operation)
     {
+        
         case CALL_:
             {
                 int line_kuda_tp = line + 1;
