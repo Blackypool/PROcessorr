@@ -1,20 +1,18 @@
 #include "file_commands.h"
 
-char** glue_of_functio(size_t& count_operation, int& lines_num)
+void glue_of_functio(size_t& count_operation, int& lines_num, struct ASM* a_s_m)
 {
     size_t number_char_in_file = number_of_file();
 
     char *full_asm = file_pointer_read();
-    ASSERTICHE(full_asm, NULL);
+    ASSERTICHE(full_asm, perror("bad glue full asm"));
     
     lines_num = number_of_lens(full_asm);
 
-    char ** str_str = v_str_ku(full_asm, lines_num, number_char_in_file, count_operation);
-    ASSERTICHE(str_str, NULL);
+    char ** strstr = v_str_ku(full_asm, lines_num, number_char_in_file, count_operation);
+    ASSERTICHE(strstr, perror("glue dry out str_str"));
 
-    free(full_asm);
-
-    return str_str; //добавить в массив строк строки с atoi параметрами файла
+    a_s_m->str_str = strstr;
 }
 
 size_t number_of_file()

@@ -1,6 +1,6 @@
 #include "switch_func.h"
 
-int calcc_func(TO_MUSH_ARG)
+void calcc_func(TO_MUSH_ARG)
 {
     switch(operation)
         {
@@ -62,7 +62,7 @@ int calcc_func(TO_MUSH_ARG)
         }
 }
 
-int steck_fucn(TO_MUSH_ARG)
+void steck_fucn(TO_MUSH_ARG)
 {
     switch (operation)
     {
@@ -94,7 +94,7 @@ int steck_fucn(TO_MUSH_ARG)
     }
 }
 
-int registors(TO_MUSH_ARG)
+void registors(TO_MUSH_ARG)
 {
     switch (operation)
     {
@@ -124,7 +124,7 @@ int registors(TO_MUSH_ARG)
     }
 }
 
-int jump_mishki_gammy(TO_MUSH_ARG)
+void jump_mishki_gammy(TO_MUSH_ARG)
 {
     switch (operation)
     {
@@ -178,7 +178,7 @@ int jump_mishki_gammy(TO_MUSH_ARG)
     }
 }
 
-int for_functions(TO_MUSH_ARG)
+void for_functions(TO_MUSH_ARG)
 {
     switch (operation)
     {
@@ -206,7 +206,7 @@ int for_functions(TO_MUSH_ARG)
     }
 }
 
-int work_with_memory (TO_MUSH_ARG)
+void work_with_memory (TO_MUSH_ARG)
 {
     switch (operation)
     {
@@ -234,10 +234,12 @@ int work_with_memory (TO_MUSH_ARG)
     }
 }
 
-int in_func(TO_MUSH_ARG)
+void in_func(TO_MUSH_ARG)
 {
     printf("enter number");
+
     int value = 0;
     scanf("%d", &value);
+    
     stack_push(data, value);
 }

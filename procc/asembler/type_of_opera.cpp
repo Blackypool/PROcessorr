@@ -41,15 +41,18 @@ int* what_the_operation(char** str_str, int lines, int *black_metka)
     {
         oper_find = choose_operatia(str_str, &lin, black_metka);
         ASSCANF(oper_find);
+        
+        hranilische[sche] = oper[oper_find].maska;
+        
+        //DEBUG;
 
-        hranilische[sche] = oper_find;
-
-        if (oper[hranilische[sche]].need_param == 1)
+        if ((oper[oper_find].need_param) == 1)
         {
             ++sche;
             hranilische[sche] = need_param(str_str, lin, black_metka, oper_find);
-            ASSCANF(hranilische[sche]);
         }
+
+        //DEBUG;
 
         ++sche;
     }
@@ -64,7 +67,7 @@ int choose_operatia(char** str_str, int *lin, int *black_metka)
     if (str_str[*lin][0] == ':')
     {
         int def = 0;
-        int ret = sscanf(str_str[*lin] + 1, " %d ", &def);
+        int ret = sscanf(str_str[*lin] + 1, "%d", &def);
         ASSCANF(ret);
 
         (*lin)++;
@@ -85,27 +88,27 @@ int need_param(char** str_str, int lin, int *black_metka, int oper_find)
         return black_metka[valli];
 
     else 
-        if (sscanf(str_str[lin] + oper[oper_find].len_len, " %d " , &valli) > 0)
+        if (sscanf(str_str[lin] + oper[oper_find].len_len, " %d" , &valli) > 0)
             return valli;
 
         else 
             {
                 char command[2] = {};
-                if (sscanf(str_str[lin] + oper[oper_find].len_len, "[%1c", command) > 0)
+                if (sscanf(str_str[lin] + oper[oper_find].len_len, " [%1cX", command) > 0)
                     return command[0] - 'A';
                 
                 else 
-                    if(sscanf(str_str[lin] + oper[oper_find].len_len, " %1c ", command) > 0)
+                    if(sscanf(str_str[lin] + oper[oper_find].len_len, " %1cX", command) > 0)
                         return command[0] - 'A';
             }
     
     return -1;
 }
 
-int* find_treasure(size_t number_of_metok)
+void find_treasure(struct ASM* a_s_m)
 {
-    int *black_metka = (int*) calloc(number_of_metok, sizeof(int));
-    ASSERTICHE(black_metka, NULL);
-    
-    return black_metka;
+    int *metka_s = (int*) calloc(NUM_label_ss, sizeof(int));
+    ASSERTICHE(metka_s, perror("metka fail"));
+
+    a_s_m->black_metka = metka_s;
 }

@@ -9,6 +9,6 @@ int choose_operatia(char** str_str, int *lin, int *black_metka);
 
 int need_param(char** str_str, int lin, int *black_metka, int oper_find);
 
-int* find_treasure(size_t number_of_metok);
+void find_treasure(struct ASM* a_s_m);
 
 #endif

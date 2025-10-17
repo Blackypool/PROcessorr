@@ -8,11 +8,11 @@
 
 enum ERR_or_GOOD
 {
-    CAPACITY_FAIL = 2,
+    CAPACITY_FAIL   = 2,
     MEMORY_OVERFLOW = 4,
     NOT_YOUR_MEMORY = 8,
-    SO_BIG_VALUE = 16,
-    ALL_RIGHT = 0
+    SO_BIG_VALUE    = 16,
+    ALL_RIGHT       = 0
 };
 
 void pr_in_tf(struct stk* data, int num_line, const char* file_n);

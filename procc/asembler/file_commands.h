@@ -4,7 +4,7 @@
 #include "enumchik_s.h"
 #include "str_of_str.h"
 
-char** glue_of_functio(size_t& count_operation, int& lines_num);
+void glue_of_functio(size_t& count_operation, int& lines_num, struct ASM* a_s_m);
 
 char* file_pointer_read();
 

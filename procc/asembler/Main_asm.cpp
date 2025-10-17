@@ -9,22 +9,25 @@ int main()
     size_t count_operation = 0;
     int lines_num = 0;
 
-    int* black_metka = find_treasure(NUM_label_ss);
-    ASSERTICHE(black_metka, 0);
+    struct ASM a_s_m = {};
 
-    char ** str_str = glue_of_functio(count_operation, lines_num);
-    ASSERTICHE(str_str, 0);
+    find_treasure(&a_s_m);
 
-    int* hranilische = what_the_operation(str_str, lines_num, black_metka);
+    glue_of_functio(count_operation, lines_num, &a_s_m);
+
+    // for(int i = 0; i < lines_num; ++i)
+    //     printf("str[%d] = {%s}\n", i, a_s_m.str_str[i]);
+
+    int* hranilische = what_the_operation(a_s_m.str_str, lines_num, a_s_m.black_metka);
     ASSERTICHE(hranilische, 0);
 
-    hranilische = what_the_operation(str_str, lines_num, black_metka);
+    hranilische = what_the_operation(a_s_m.str_str, lines_num, a_s_m.black_metka);
 
     nahui_is_compilatora(hranilische, count_operation);
 
     free(hranilische);
-    free(str_str);
-    free(black_metka);
+    free(a_s_m.str_str);
+    free(a_s_m.black_metka);
 
     return 0;
 }

@@ -19,18 +19,18 @@
             else line++; \
             printf("line[%d] = {%d}", line, uslovie);
 
-int calcc_func(TO_MUSH_ARG);
+void calcc_func(TO_MUSH_ARG);
 
-int steck_fucn(TO_MUSH_ARG);
+void steck_fucn(TO_MUSH_ARG);
 
-int registors(TO_MUSH_ARG);
+void registors(TO_MUSH_ARG);
 
-int jump_mishki_gammy(TO_MUSH_ARG);
+void jump_mishki_gammy(TO_MUSH_ARG);
 
-int for_functions(TO_MUSH_ARG);
+void for_functions(TO_MUSH_ARG);
 
-int work_with_memory (TO_MUSH_ARG);
+void work_with_memory (TO_MUSH_ARG);
 
-int in_func(TO_MUSH_ARG);
+void in_func(TO_MUSH_ARG);
 
 #endif

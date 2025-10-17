@@ -20,7 +20,6 @@ void pr_in_tf(struct stk* data, int num_line, const char* file_n)
 }
 
 
-
 void yadro_li_you(struct stk* data, int num_line, const char* file_n)
 {
     uintptr_t adr_ptr = (uintptr_t)(data->stack);
