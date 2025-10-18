@@ -69,8 +69,8 @@ void steck_fucn(TO_MUSH_ARG)
 
         case PUSH_:
             {
-                line++;
-                int value = str_str[line];
+                (*line)++;
+                int value = str_str[*line];
                 
                 stack_push(data, value);
             }
@@ -79,13 +79,14 @@ void steck_fucn(TO_MUSH_ARG)
         case OUT_:
             {
                 int answer = stack_pop(data);
-                printf("answer = (%d)", answer);
+                printf(ANSI_COLOR_BLUE "answer = (%d)", answer);
+                printf(ANSI_COLOR_RESET "\n");
             }
             break;
 
         case HLT_:
             {
-            line = lines_all;
+            *line = lines_all;
             }
             break;
 
@@ -101,8 +102,8 @@ void registors(TO_MUSH_ARG)
 
         case POPREG_:
             {
-                line++;
-                int xx = str_str[line];
+                (*line)++;
+                int xx = str_str[*line];
 
                 int param = stack_pop(data);
 
@@ -112,8 +113,8 @@ void registors(TO_MUSH_ARG)
                     
         case PSHREG_:
             {
-                line++;
-                int xx = str_str[line];
+                (*line)++;
+                int xx = str_str[*line];
 
                 stack_push(data, data->PuSh_rEg[xx]);
             }
@@ -131,9 +132,9 @@ void jump_mishki_gammy(TO_MUSH_ARG)
 
         case JMP_:
             {
-                line++;
+                (*line)++;
 
-                line = str_str[line];
+                *line = str_str[*line];
             }
             break;
 
@@ -169,7 +170,7 @@ void jump_mishki_gammy(TO_MUSH_ARG)
 
         case JNE_:
         {
-            ST_PP_JUMP(data, v_2 != v_2);
+            ST_PP_JUMP(data, v_2 != v_1);
         }
             break;
 
@@ -185,19 +186,19 @@ void for_functions(TO_MUSH_ARG)
         
         case CALL_:
             {
-                int line_kuda_tp = line + 1;
+                int line_kuda_tp = *line + 1;
                 
-                int kuda_obratno = line + 2;
+                int kuda_obratno = *line + 2;
 
                 stack_push(stk_ret, kuda_obratno);
 
-                line = line_kuda_tp;
+                *line = line_kuda_tp;
             }
             break;
 
         case RET_:
             {
-                line = stack_pop(stk_ret);
+                *line = stack_pop(stk_ret);
             }
             break;
 
@@ -213,8 +214,8 @@ void work_with_memory (TO_MUSH_ARG)
 
         case POPM_:
             {
-                line++;
-                int xx = str_str[line];
+                (*line)++;
+                int xx = str_str[*line];
 
                 push_memory[xx] = stack_pop(data);
             }
@@ -222,8 +223,8 @@ void work_with_memory (TO_MUSH_ARG)
 
         case PUSHM_:
             {
-                line++;
-                int xx = str_str[line];
+                (*line)++;
+                int xx = str_str[*line];
 
                 stack_push(data, push_memory[xx]);
             }

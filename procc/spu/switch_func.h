@@ -6,18 +6,19 @@
 #define ST_PP_CALC(data, uslovie)\
         int v_1 = stack_pop(data);\
         int v_2 = stack_pop(data); \
-        stack_push(data, uslovie);  \
-        printf("line[%d] = {%d}", line, uslovie);
+        stack_push(data, uslovie)//;  \
+        //printf("ST_PP||line[%d] = {%d}", *line, uslovie)
 
 
 #define ST_PP_JUMP(data, uslovie)   \
-            line++;\
+            (*line)++;\
             int v_1 = stack_pop(data);\
             int v_2 = stack_pop(data); \
             if(uslovie)\
-                line = str_str[line];    \
-            else line++; \
-            printf("line[%d] = {%d}", line, uslovie);
+                *line = str_str[*line];    \
+            else *line++//;\
+            //printf("JUMP||line[%d] = {%d}", *line, uslovie)
+
 
 void calcc_func(TO_MUSH_ARG);
 

@@ -11,7 +11,8 @@ int main()
 
     struct ASM a_s_m = {};
 
-    find_treasure(&a_s_m);
+    int num_labels = find_treasure(&a_s_m);
+    ASSCANF(num_labels);
 
     glue_of_functio(count_operation, lines_num, &a_s_m);
 
@@ -21,7 +22,14 @@ int main()
     int* hranilische = what_the_operation(a_s_m.str_str, lines_num, a_s_m.black_metka);
     ASSERTICHE(hranilische, 0);
 
-    hranilische = what_the_operation(a_s_m.str_str, lines_num, a_s_m.black_metka);
+    
+    int not_use_labls = 0;
+    for(int i = 0; i < num_labels; ++i)
+        if (a_s_m.black_metka[i] < 0)
+            ++not_use_labls;
+
+    if (not_use_labls != num_labels)
+        hranilische = what_the_operation(a_s_m.str_str, lines_num, a_s_m.black_metka);
 
     nahui_is_compilatora(hranilische, count_operation);
 

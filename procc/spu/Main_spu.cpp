@@ -17,15 +17,20 @@ int main()
     int* str_str = read_er(&lines);
     ASSERTICHE(str_str, 0);
 
+    // for(int i = 0; i < lines; ++i)
+    //     printf("bite_code[%d] = {%d}\n", i, str_str[i]);
+
     memory_crafter(&spu);
 
     lego_stack(&spu.start_stk, STK_capacity);
     lego_stack(&spu.stk_ret, RET_capacity);
 
-
     ans_typ answer = 0;
     for(int line_now = 0; line_now < lines && answer != HLT_ && answer != ER_R_OR; ++line_now)
-        answer = resume_calc(&spu.start_stk, &spu.stk_ret, line_now, str_str, lines, spu.ram, 0);
+    {
+        answer = resume_calc(&spu.start_stk, &spu.stk_ret, &line_now, str_str, lines, spu.ram, 0);
+        //printf("str_str = (%d) = line{%d} = [%d]\n", str_str[line_now], line_now, answer);
+    }
 
     if(answer == ER_R_OR)
         printf("\n911 errorr\n");

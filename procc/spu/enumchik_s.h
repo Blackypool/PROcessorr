@@ -60,11 +60,11 @@ typedef int ans_typ;
 
 
 #define TO_MUSH_ARG \
-        struct stk* data, struct stk* stk_ret, int &line, int* str_str, int lines_all, int* push_memory, int operation
+        struct stk* data, struct stk* stk_ret, int *line, int* str_str, int lines_all, int* push_memory, int operation
 
 
 #define FOR_SW(line)\
-        operation = str_str[line];
+        operation = str_str[*line];
 
 
 struct SPU
@@ -94,41 +94,41 @@ struct operatio
 enum calcic
 {
 
-    _CALC_  = 0x00000011,
-    ADD_    = 0x00000012,
-    SUB_    = 0x00000013,
-    MUL_    = 0x00000014,
-    DIV_    = 0x00000015,     
-    POW_    = 0x00000016,
-    SQRT_   = 0x00000017,
+    _CALC_  = 0x00000010,
+    ADD_    = 0x00000011,
+    SUB_    = 0x00000012,
+    MUL_    = 0x00000013,
+    DIV_    = 0x00000014,     
+    POW_    = 0x00000015,
+    SQRT_   = 0x00000016,
     
-    _BASE_  = 0x00000110,
-    PUSH_   = 0x00000120,
-    OUT_    = 0x00000130,
-    HLT_    = 0x00000140,
+    _BASE_  = 0x00000100,
+    PUSH_   = 0x00000101,
+    OUT_    = 0x00000102,
+    HLT_    = 0x00000103,
     
-    _REG_   = 0x00001100,
-    POPREG_ = 0x00002100,   
-    PSHREG_ = 0x00003100,
+    _REG_   = 0x00001000,
+    POPREG_ = 0x00001001,   
+    PSHREG_ = 0x00001002,
 
-    _GAMMY_ = 0x00001001,
-    JMP_    = 0x00001002,
-    JB_     = 0x00001003,
-    JBE_    = 0x00001004,
-    JA_     = 0x00001005,
-    JAE_    = 0x00001006,                 
-    JE_     = 0x00001007,                   
-    JNE_    = 0x00001008,
+    _GAMMY_ = 0x00010000,
+    JMP_    = 0x00010001,
+    JB_     = 0x00010002,
+    JBE_    = 0x00010003,
+    JA_     = 0x00010004,
+    JAE_    = 0x00010005,                 
+    JE_     = 0x00010006,                   
+    JNE_    = 0x00010007,
 
-    _FUNCN_ = 0x00000101,
-    RET_    = 0x00000707,
-    CALL_   = 0x00000808,
+    _FUNCN_ = 0x00100000,
+    RET_    = 0x00100001,
+    CALL_   = 0x00100002,
 
-    _MEMOR_ = 0x00001010,
-    POPM_   = 0x00002020,
-    PUSHM_  = 0x00003030,
+    _MEMOR_ = 0x01000000,
+    POPM_   = 0x01000001,
+    PUSHM_  = 0x01000002,
 
-    _INT_   = 0x00001111,
+    _INT_   = 0x10000000,
 };
 
 enum er_sC

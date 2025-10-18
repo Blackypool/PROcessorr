@@ -5,7 +5,7 @@ static const struct operatio oper[] = {
       {"ADD",  ADD_, 3, 0},  //0
        {"SUB",  SUB_, 3, 0},  //1
         {"MUL",  MUL_, 3, 0},  //2
-         {"DIV",  DIV_, 3, 0},  //3
+         {"DIV",  DIV_, 3, 0},  //3//   колво меток
           {"POW",  POW_, 3, 0},  //4
            {"SQRT", SQRT_, 4, 0}, //5
                                 {"PUSH", PUSH_, 4, 1},  //6
@@ -13,13 +13,13 @@ static const struct operatio oper[] = {
                                   {"HLT",  HLT_,  3, 0},  //8
            {"POPREG", POPREG_, 6, 1},  //9
             {"PSHREG", PSHREG_, 6, 1},  //10
-                                     {"JMP", JMP_, 4, 1},   //11
-                                      {"JB",  JB_,  3, 1},   //12
-                                       {"JBE", JBE_, 3, 1},   //13
-                                        {"JA",  JA_,  3, 1},   //14
-                                         {"JAE", JAE_, 3, 1},   //15
-                                          {"JE",  JE_,  3, 1},   //16
-                                           {"JNE", JNE_, 3, 1},   //17
+                                     {"JMP", JMP_, 3, 1},   //11
+                                      {"JBE", JBE_, 3, 1},   //12
+                                       {"JB",  JB_,  2, 1},   //13
+                                        {"JAE", JAE_, 3, 1},   //14
+                                         {"JA",  JA_,  2, 1},   //15
+                                          {"JNE", JNE_, 3, 1},   //16
+                                           {"JE",  JE_,  2, 1},   //17
                         {"RET",  RET_, 3, 0},  //18
                          {"CALL", CALL_, 4, 1}, //19
                                               {"POPM",  POPM_, 4, 1},//20
@@ -64,19 +64,17 @@ int choose_operatia(char** str_str, int *lin, int *black_metka)
 {
     int number_of_operation = sizeof(oper) / sizeof(oper[0]);
 
-    if (str_str[*lin][0] == ':')
+    int def = 0;
+    if (int ret = sscanf(str_str[*lin], ":%d", &def) > 0)
     {
-        int def = 0;
-        int ret = sscanf(str_str[*lin] + 1, "%d", &def);
-        ASSCANF(ret);
-
         (*lin)++;
         black_metka[def] = *lin;
     }
 
+
     for(int i = 0; i < number_of_operation; ++i)
-            if (strncmp(str_str[*lin], oper[i].opera, oper[i].len_len) == 0)
-                return i;
+        if (strncmp(str_str[*lin], oper[i].opera, oper[i].len_len) == 0)
+            return i;
     
     return -1;
 }
@@ -87,28 +85,29 @@ int need_param(char** str_str, int lin, int *black_metka, int oper_find)
     if (sscanf(str_str[lin] + oper[oper_find].len_len, " :%d " , &valli) > 0)
         return black_metka[valli];
 
-    else 
-        if (sscanf(str_str[lin] + oper[oper_find].len_len, " %d" , &valli) > 0)
-            return valli;
+    if (sscanf(str_str[lin] + oper[oper_find].len_len, " %d" , &valli) > 0)
+        return valli;
 
-        else 
-            {
-                char command[2] = {};
-                if (sscanf(str_str[lin] + oper[oper_find].len_len, " [%1cX", command) > 0)
-                    return command[0] - 'A';
+    char command[2] = {};
+    if (sscanf(str_str[lin] + oper[oper_find].len_len, " [%1cX]", command) > 0)
+        return command[0] - 'A';
                 
-                else 
-                    if(sscanf(str_str[lin] + oper[oper_find].len_len, " %1cX", command) > 0)
-                        return command[0] - 'A';
-            }
+    if(sscanf(str_str[lin] + oper[oper_find].len_len, " %1cX", command) > 0)
+        return command[0] - 'A';
     
     return -1;
 }
 
-void find_treasure(struct ASM* a_s_m)
+int find_treasure(struct ASM* a_s_m)
 {
     int *metka_s = (int*) calloc(NUM_label_ss, sizeof(int));
-    ASSERTICHE(metka_s, perror("metka fail"));
+    ASSERTICHE(metka_s, -1);
+
+    int i = 0;
+    for(i; i < NUM_label_ss; ++i)
+        metka_s[i] = -1;
 
     a_s_m->black_metka = metka_s;
+
+    return i;
 }
