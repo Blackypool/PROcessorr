@@ -26,7 +26,7 @@ void file_pointer_read(struct GEN* ration, int number_file)
     ASSERTICHE(ptr, perror("calloc ruined"));
 
     size_t count = fread(ptr, sizeof(char), ration->char_in_file, fp);
-    ASSCANF(count, perror("fread with coubt failed"));
+    ASSCANF(count, perror("error in file_pointer_read"));
 
     ration->full_txt = ptr;
 

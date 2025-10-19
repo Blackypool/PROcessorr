@@ -6,11 +6,11 @@ enum for_user
     STK_capacity = 10,
     RET_capacity = 5,
     OPE_rativ_ka = 100,
-    NUM_label_ss = 5
+    NUM_label_ss = 7
 };
 
-#define FILE_for_SPU "quadr_into_txt.txt" 
-#define FILE_for_ASM "asm.asm"
+#define FILE_for_SPU "asm_into_bin.bin"
+#define FILE_for_ASM "asm.asm"    //quadratic   //asm
 
 #include <stdio.h>
 #include <string.h>
@@ -32,15 +32,22 @@ typedef int ans_typ;
 
 #define ASSERTICHE(ptr, ret) \
         if((ptr) == NULL) {   \
-            fprintf(stderr, "\nassert react in line {%d}\nfile {%s}\n", __LINE__, __FILE__, strerror(errno)); \
+            fprintf(stderr, "\nassert react in %s:%d\n", __FILE__, __LINE__); \
             return ret; \
         }
 
 
-#define ASSCANF(ret)   \
+#define ASSCANFOR_ASM(ret, lin)  \
         if((ret) < 0) { \
-            fprintf(stderr, "\nsscanf ruined in line {%d}\nfile {%s}\n", __LINE__, __FILE__, strerror(errno)); \
+            fprintf(stderr, "\nsscanf ruined in %s:%d, error in %s:%d\n", __FILE__, __LINE__, FILE_for_ASM, lin + 1); \
             return  NULL; \
+        }
+
+
+#define ASSCANF(ret)  \
+    if((ret) < 0) { \
+        fprintf(stderr, "\nsscanf ruined in %s:%d\n", __FILE__, __LINE__); \
+        return  NULL; \
         }
 
 
@@ -94,41 +101,43 @@ struct operatio
 enum calcic
 {
 
-    _CALC_  = 0x00000010,
-    ADD_    = 0x00000011,
-    SUB_    = 0x00000012,
-    MUL_    = 0x00000013,
-    DIV_    = 0x00000014,     
-    POW_    = 0x00000015,
-    SQRT_   = 0x00000016,
+    _CALC_      = 0x00000010,
+    CMD_ADD_    = 0x00000011,
+    CMD_SUB_    = 0x00000012,
+    CMD_MUL_    = 0x00000013,
+    CMD_DIV_    = 0x00000014,     
+    CMD_POW_    = 0x00000015,
+    CMD_SQRT_   = 0x00000016,
     
-    _BASE_  = 0x00000100,
-    PUSH_   = 0x00000101,
-    OUT_    = 0x00000102,
-    HLT_    = 0x00000103,
+    _BASE_      = 0x00000100,
+    CMD_PUSH_   = 0x00000101,
+    CMD_OUT_    = 0x00000102,
+    CMD_HLT_    = 0x00000103,
     
-    _REG_   = 0x00001000,
-    POPREG_ = 0x00001001,   
-    PSHREG_ = 0x00001002,
+    _REG_       = 0x00001000,
+    CMD_POPREG_ = 0x00001001,
+    CMD_PSHREG_ = 0x00001002,
 
-    _GAMMY_ = 0x00010000,
-    JMP_    = 0x00010001,
-    JB_     = 0x00010002,
-    JBE_    = 0x00010003,
-    JA_     = 0x00010004,
-    JAE_    = 0x00010005,                 
-    JE_     = 0x00010006,                   
-    JNE_    = 0x00010007,
+    _GAMMY_     = 0x00010000,
+    CMD_JMP_    = 0x00010001,
+    CMD_JB_     = 0x00010002,
+    CMD_JBE_    = 0x00010003,
+    CMD_JA_     = 0x00010004,
+    CMD_JAE_    = 0x00010005,
+    CMD_JE_     = 0x00010006,
+    CMD_JNE_    = 0x00010007,
 
-    _FUNCN_ = 0x00100000,
-    RET_    = 0x00100001,
-    CALL_   = 0x00100002,
+    _FUNCN_     = 0x00100000,
+    CMD_RET_    = 0x00100001,
+    CMD_CALL_   = 0x00100002,
+    CMD_SLEP_   = 0x00100003,
 
-    _MEMOR_ = 0x01000000,
-    POPM_   = 0x01000001,
-    PUSHM_  = 0x01000002,
+    _MEMOR_     = 0x01000000,
+    CMD_POPM_   = 0x01000001,
+    CMD_PUSHM_  = 0x01000002,
+    CMD_DRAW_   = 0x01000003,
 
-    _INT_   = 0x10000000,
+    CMD_INT_    = 0x10000000,
 };
 
 enum er_sC
@@ -136,5 +145,26 @@ enum er_sC
     SU_CC_ESS = 1,
     ER_R_OR   = 911
 };
+
+#define ARG_CLC \
+        struct stk* data, struct stk* /*stk_ret*/, int* /*line*/, int* /*str_str*/, int /*lines_all*/, int* /*push_memory*/, int operation
+
+#define ARG_STF \
+        struct stk* data, struct stk* /*stk_ret*/, int *line, int* str_str, int lines_all, int* /*push_memory*/, int operation
+
+#define ARG_REG \
+        struct stk* data, struct stk* /*stk_ret*/, int *line, int* str_str, int /*lines_all*/, int* /*push_memory*/, int operation
+
+#define ARG_JMP \
+        struct stk* data, struct stk* /*stk_ret*/, int *line, int* str_str, int /*lines_all*/, int* /*push_memory*/, int operation
+
+#define ARG_FFC \
+        struct stk* /*data*/, struct stk* stk_ret, int *line, int* str_str, int /*lines_all*/, int* /*push_memory*/, int operation
+
+#define ARG_WWM \
+        struct stk* data, struct stk* /*stk_ret*/, int *line, int* str_str, int /*lines_all*/, int* push_memory, int operation
+
+#define ARG_INF \
+        struct stk* data, struct stk* /*stk_ret*/, int* /*line*/, int* /*str_str*/, int /*lines_all*/, int* /*push_memory*/, int /*operation*/
 
 #endif

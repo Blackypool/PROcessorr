@@ -3,7 +3,8 @@
 
 void nahui_is_compilatora(int *hranilische, size_t number_of);
 
-
+//башскрипты
+//isspace///
 int main()
 {
     size_t count_operation = 0;
@@ -11,29 +12,35 @@ int main()
 
     struct ASM a_s_m = {};
 
-    int num_labels = find_treasure(&a_s_m);
-    ASSCANF(num_labels);
+    find_treasure(&a_s_m);
 
     glue_of_functio(count_operation, lines_num, &a_s_m);
+
 
     // for(int i = 0; i < lines_num; ++i)
     //     printf("str[%d] = {%s}\n", i, a_s_m.str_str[i]);
 
     int* hranilische = what_the_operation(a_s_m.str_str, lines_num, a_s_m.black_metka);
     ASSERTICHE(hranilische, 0);
-
+    //////////free
     
     int not_use_labls = 0;
-    for(int i = 0; i < num_labels; ++i)
+    for(int i = 0; i < NUM_label_ss; ++i)
         if (a_s_m.black_metka[i] < 0)
             ++not_use_labls;
 
-    if (not_use_labls != num_labels)
+
+    if (not_use_labls != NUM_label_ss)
+    {
+        free(hranilische);
         hranilische = what_the_operation(a_s_m.str_str, lines_num, a_s_m.black_metka);
+    }
+
 
     nahui_is_compilatora(hranilische, count_operation);
 
     free(hranilische);
+    free(a_s_m.str_str[0]);
     free(a_s_m.str_str);
     free(a_s_m.black_metka);
 

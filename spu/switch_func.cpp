@@ -1,29 +1,29 @@
 #include "switch_func.h"
 
-void calcc_func(TO_MUSH_ARG)
+void calcc_func(ARG_CLC)
 {
     switch(operation)
         {
 
-            case ADD_:
+            case CMD_ADD_:
             {
                 ST_PP_CALC(data, v_1 + v_2);
             }
             break;
 
-            case SUB_:
+            case CMD_SUB_:
             {
                 ST_PP_CALC(data, v_2 - v_1);
             }
             break;
 
-            case MUL_:
+            case CMD_MUL_:
             {
                 ST_PP_CALC(data, v_1 * v_2);
             }
             break;
         
-            case DIV_:
+            case CMD_DIV_:
             {
                 ST_PP(data);
 
@@ -37,13 +37,13 @@ void calcc_func(TO_MUSH_ARG)
             }
             break;
                 
-            case POW_:
+            case CMD_POW_:
             {
-                ST_PP_CALC(data, pow(v_2, v_1));                
+                ST_PP_CALC(data, (tip_lac)pow(v_2, v_1));                
             }
             break;
 
-            case SQRT_:
+            case CMD_SQRT_:
             {
                 int v_1 = stack_pop(data);
                 
@@ -53,7 +53,7 @@ void calcc_func(TO_MUSH_ARG)
                     break;
                 }
 
-                stack_push(data, sqrt(v_1));
+                stack_push(data, (tip_lac)sqrt(v_1));
             }
             break;
 
@@ -62,12 +62,12 @@ void calcc_func(TO_MUSH_ARG)
         }
 }
 
-void steck_fucn(TO_MUSH_ARG)
+void steck_fucn(ARG_STF)
 {
     switch (operation)
     {
 
-        case PUSH_:
+        case CMD_PUSH_:
             {
                 (*line)++;
                 int value = str_str[*line];
@@ -76,7 +76,7 @@ void steck_fucn(TO_MUSH_ARG)
             }
             break;
         
-        case OUT_:
+        case CMD_OUT_:
             {
                 int answer = stack_pop(data);
                 printf(ANSI_COLOR_BLUE "answer = (%d)", answer);
@@ -84,7 +84,7 @@ void steck_fucn(TO_MUSH_ARG)
             }
             break;
 
-        case HLT_:
+        case CMD_HLT_:
             {
             *line = lines_all;
             }
@@ -95,12 +95,12 @@ void steck_fucn(TO_MUSH_ARG)
     }
 }
 
-void registors(TO_MUSH_ARG)
+void registors(ARG_REG)
 {
     switch (operation)
     {
 
-        case POPREG_:
+        case CMD_POPREG_:
             {
                 (*line)++;
                 int xx = str_str[*line];
@@ -111,7 +111,7 @@ void registors(TO_MUSH_ARG)
             }
             break;
                     
-        case PSHREG_:
+        case CMD_PSHREG_:
             {
                 (*line)++;
                 int xx = str_str[*line];
@@ -125,12 +125,12 @@ void registors(TO_MUSH_ARG)
     }
 }
 
-void jump_mishki_gammy(TO_MUSH_ARG)
+void jump_mishki_gammy(ARG_JMP)
 {
     switch (operation)
     {
 
-        case JMP_:
+        case CMD_JMP_:
             {
                 (*line)++;
 
@@ -138,37 +138,37 @@ void jump_mishki_gammy(TO_MUSH_ARG)
             }
             break;
 
-        case JB_:
+        case CMD_JB_:
         {
             ST_PP_JUMP(data, v_2 <  v_1);
         }
             break;
             
-        case JBE_:
+        case CMD_JBE_:
         {
             ST_PP_JUMP(data, v_2 <= v_1);
         }
             break;
 
-        case JA_:
+        case CMD_JA_:
         {
             ST_PP_JUMP(data, v_2 >  v_1);
         }
             break;
 
-        case JAE_:
+        case CMD_JAE_:
         {
             ST_PP_JUMP(data, v_2 >= v_1);
         }
             break;
 
-        case JE_:
+        case CMD_JE_:
         {
             ST_PP_JUMP(data, v_2 == v_1);
         }
             break;
 
-        case JNE_:
+        case CMD_JNE_:
         {
             ST_PP_JUMP(data, v_2 != v_1);
         }
@@ -179,12 +179,12 @@ void jump_mishki_gammy(TO_MUSH_ARG)
     }
 }
 
-void for_functions(TO_MUSH_ARG)
+void for_functions(ARG_FFC) 
 {
     switch (operation)
     {
         
-        case CALL_:
+        case CMD_CALL_:
             {
                 int line_kuda_tp = *line + 1;
                 
@@ -196,23 +196,32 @@ void for_functions(TO_MUSH_ARG)
             }
             break;
 
-        case RET_:
+        case CMD_RET_:
             {
                 *line = stack_pop(stk_ret);
             }
             break;
 
+        case CMD_SLEP_:
+            {
+                (*line)++;
+
+                unsigned int for_sl = (unsigned int)str_str[*line] / 1000;
+                
+                sleep(for_sl);
+            }
+        
         default: break;
 
     }
 }
 
-void work_with_memory (TO_MUSH_ARG)
+void work_with_memory (ARG_WWM)
 {
     switch (operation)
     {
 
-        case POPM_:
+        case CMD_POPM_:
             {
                 (*line)++;
                 int xx = str_str[*line];
@@ -221,7 +230,7 @@ void work_with_memory (TO_MUSH_ARG)
             }
             break;
 
-        case PUSHM_:
+        case CMD_PUSHM_:
             {
                 (*line)++;
                 int xx = str_str[*line];
@@ -230,12 +239,20 @@ void work_with_memory (TO_MUSH_ARG)
             }
             break;
 
+        case CMD_DRAW_:
+            {
+                printf("DRAW WORKING");
+                
+                for(int i = 0; i < OPE_rativ_ka; ++i)
+                    printf("%d", push_memory[i]);
+            }
+
         default: break;
 
     }
 }
 
-void in_func(TO_MUSH_ARG)
+void in_func(ARG_INF)
 {
     printf("enter number");
 

@@ -17,8 +17,8 @@ int main()
     int* str_str = read_er(&lines);
     ASSERTICHE(str_str, 0);
 
-    // for(int i = 0; i < lines; ++i)
-    //     printf("bite_code[%d] = {%d}\n", i, str_str[i]);
+    for(int i = 0; i < lines; ++i)
+        printf("bite_code[%d] = {%d}\n", i, str_str[i]);
 
     memory_crafter(&spu);
 
@@ -26,7 +26,7 @@ int main()
     lego_stack(&spu.stk_ret, RET_capacity);
 
     ans_typ answer = 0;
-    for(int line_now = 0; line_now < lines && answer != HLT_ && answer != ER_R_OR; ++line_now)
+    for(int line_now = 0; line_now < lines && answer != CMD_HLT_ && answer != ER_R_OR; ++line_now)
     {
         answer = resume_calc(&spu.start_stk, &spu.stk_ret, &line_now, str_str, lines, spu.ram, 0);
         //printf("str_str = (%d) = line{%d} = [%d]\n", str_str[line_now], line_now, answer);
@@ -65,12 +65,16 @@ int* read_er(int *lines)
     FILE *fp = fopen(FILE_for_SPU, "rb");
     ASSERTICHE(fp, NULL);
 
-    int* arraayy = (int*) calloc(file_info.st_size / sizeof(int) + 1, sizeof(int));
+    size_t file_buf = (size_t)file_info.st_size;
+
+
+    int* arraayy = (int*) calloc(file_buf/ sizeof(int) + 1, sizeof(int));
     ASSERTICHE(arraayy, NULL);
 
-    *lines = file_info.st_size / sizeof(int);
+    *lines = (int) (file_buf / sizeof(int));
 
-    size_t count = fread(arraayy, sizeof(int), *lines, fp);
+    size_t count = fread(arraayy, sizeof(int), (size_t)*lines, fp);
+    ASSCANF(count);
 
     fclose(fp);
 
@@ -79,24 +83,25 @@ int* read_er(int *lines)
 
 int resume_calc(TO_MUSH_ARG)
 {
-    ASSERTICHE(data, HLT_);
-    ASSERTICHE(stk_ret, HLT_);
+    ASSERTICHE(data, CMD_HLT_);
+    ASSERTICHE(stk_ret, CMD_HLT_);
 
     FOR_SW(line);
 
-    LOGIC(_CALC_,  calcc_func);
 
-    LOGIC(_BASE_,  steck_fucn);
+    LOGIC(_CALC_,   calcc_func);
 
-    LOGIC(_REG_,   registors);
+    LOGIC(_BASE_,   steck_fucn);
 
-    LOGIC(_GAMMY_, jump_mishki_gammy);
+    LOGIC(_REG_,    registors);
 
-    LOGIC(_FUNCN_, for_functions);
+    LOGIC(_GAMMY_,  jump_mishki_gammy);
 
-    LOGIC(_MEMOR_, work_with_memory);
+    LOGIC(_FUNCN_,  for_functions);
 
-    LOGIC(_INT_,   steck_fucn);
+    LOGIC(_MEMOR_,  work_with_memory);
+
+    LOGIC(CMD_INT_, in_func);
     
     return ER_R_OR;
 }

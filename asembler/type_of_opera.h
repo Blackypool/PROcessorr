@@ -5,10 +5,12 @@
 
 int* what_the_operation(char** str_str, int lines, int *black_metka);
 
-int choose_operatia(char** str_str, int *lin, int *black_metka);
+int choose_operatia(char** str_str, int *lin);
 
-int need_param(char** str_str, int lin, int *black_metka, int oper_find);
+int need_param(char** str_str, int lin, int *black_metka, int oper_find, int *kanareyka);
 
-int find_treasure(struct ASM* a_s_m);
+void find_treasure(struct ASM* a_s_m);
+
+void label_you_li(char** str_str, int* black_metka, int *lin);
 
 #endif

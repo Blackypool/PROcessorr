@@ -21,7 +21,7 @@ char** v_str_ku(char *full_asm, int lines_num, size_t number_char_in_file)
     str_str[lines_num] = &full_asm[0];   //загружаем 1 строку
     lines_num = 1;
 
-    for(int i = 0; i < number_char_in_file; ++i)
+    for(size_t i = 0; i < number_char_in_file; ++i)
     {
         if(full_asm[i] == '\0')
         {   

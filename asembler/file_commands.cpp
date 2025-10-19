@@ -42,7 +42,7 @@ char* file_pointer_read()
         return NULL;
     }
 
-    size_t count = fread(ptr, sizeof(char), number_char, fp );
+    size_t count = fread(ptr, sizeof(char), number_char, fp);
     ASSCANF(count);
 
     fclose (fp);

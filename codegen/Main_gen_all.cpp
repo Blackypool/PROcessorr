@@ -8,6 +8,7 @@ int main()
         open_write_all(fp_out);
 
 
+    fprintf(fp_out, "DRAW\n");
     fprintf(fp_out, "HLT\n");
 
     fclose(fp_out);

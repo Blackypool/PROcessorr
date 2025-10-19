@@ -10,11 +10,9 @@ void ffprintff(struct GEN* ration, int* adres, FILE *fp_out)
         fprintf(fp_out, "POPREG AX\n");                     // -- в регистре AX хранится адрес
         fprintf(fp_out, "POPM [AX]\n");                     // -- в памяти в ячейку под номером адреса запихиваем в память ASCII символа
 
-        fprintf(fp_out, "PUSHM [AX]\n");                    // -- достаем из памяти ячейки адреса в стек
-        fprintf(fp_out, "OUT\n");
+        (*adres)++;
     }
-
-    (*adres)++;
+    
 }
 
 void open_write_all(FILE* fp_out)
@@ -33,7 +31,7 @@ void open_write_all(FILE* fp_out)
 
         // fprintf(“clear”);
 
-        fprintf(fp_out, "SLEEP %f\n", PING);
+        fprintf(fp_out, "SLEEP %d\n", PING);
 
         free(ration.full_txt);
     }

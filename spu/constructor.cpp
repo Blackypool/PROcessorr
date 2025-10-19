@@ -11,7 +11,7 @@ void lego_stack(struct stk* data, ssize_t capacity)
     data->capacity = capacity;
     defence_of_capacity(data, L_F);
 
-    data->stack = (tip_lac*) calloc(data->capacity + 2, sizeof(tip_lac));
+    data->stack = (tip_lac*) calloc((size_t)data->capacity + 2, sizeof(tip_lac));
     yadro_li_you(data, L_F);
     //P_O_I_S_O_N(data);
 

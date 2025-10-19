@@ -12,17 +12,17 @@
 #include "pechatnik_asm.h"
 #include "for_fast_use.h"
 
-#define ASSCANF(param, retern) \
-        if((param) <= 0) { \
-            fprintf(stderr, "\nparam ruined in line {%d}\nfile {%s}\n", __LINE__, __FILE__, strerror(errno)); \
-            return  retern; \
+#define ASSERTICHE(ptr, ret) \
+        if((ptr) == NULL) {   \
+            fprintf(stderr, "\nassert react in %s:%d\n", __FILE__, __LINE__); \
+            return ret; \
         }
 
 
-#define ASSERTICHE(ptr, ret) \
-        if((ptr) == NULL) {   \
-            fprintf(stderr, "\nassert react in line {%d} -- file {%s}\n", __LINE__, __FILE__, strerror(errno)); \
-            return ret; \
+#define ASSCANF(ret, retern)  \
+    if((ret) < 0) { \
+        fprintf(stderr, "\nsscanf ruined in %s:%d\n", __FILE__, __LINE__); \
+        return  retern; \
         }
 
 

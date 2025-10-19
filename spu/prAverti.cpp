@@ -1,6 +1,6 @@
 #include "prAverti.h"
 
-void pr_in_tf(struct stk* data, int num_line, const char* file_n)
+void pr_in_tf(struct stk* data, int /*num_line*/, const char* /*file_n*/)
 {
     ssize_t schetchik = data->capacity;
 
@@ -26,13 +26,12 @@ void yadro_li_you(struct stk* data, int num_line, const char* file_n)
 
     if ((adr_ptr < 0x1000) || (adr_ptr > 0x00007FFFFFFFFFFF))
     {
-        printf(ANSI_COLOR_RED "\nNO_NO_NO Mr. fish, you go out is pamyat yadra\n" 
-                "----------------------------------------\nin line %d\n----------------------------------------\nand\n----------------------------------------\nfile <%s>\n----------------------------------------\n" ANSI_COLOR_RESET, num_line - 1, file_n);
+        printf(ANSI_COLOR_RED "\nNO_NO_NO Mr. fish, you go out is pamyat yadrad%s:%d\n", file_n, num_line);
 
         if(data->stack != NULL)
             free(data->stack);
 
-        data->stack = (tip_lac*) calloc(data->capacity, sizeof(int));
+        data->stack = (tip_lac*) calloc((size_t)(data->capacity), sizeof(int));
 
         if(data->stack == NULL)
             perror("Unluck - x2\n");
@@ -47,24 +46,22 @@ void defence_of_capacity(struct stk* data, int num_line, const char* file_n)
 
     if(llabs(data->capacity) >= pow(2, 62))
     {
-        printf("To big capacity = (%zu) brrrr\n\n----------------------------------------\nin line %d\n----------------------------------------\nand\n----------------------------------------\nfile <%s>\n----------------------------------------\n" ANSI_COLOR_RESET, data -> capacity, num_line - 1, file_n);
+        printf("To big capacity = (%zd) %s:%d\n", data -> capacity, file_n, num_line);
         schetchik = llabs(data->capacity) / 4;
         data -> capacity = schetchik;
     }
 
 
-    ssize_t def_capacity = (data->capacity);
-
     if(data->capacity == 0)
     {
-        printf(ANSI_COLOR_RED "Capacity cant be zero\nBut I can fix it\n" ANSI_COLOR_RESET);
-        def_capacity = 1;
+        printf(ANSI_COLOR_RED "Capacity cant be zero\nBut I can fix it%s:%d\n", file_n, num_line);
+        (data->capacity) = 1;
     }
 
 
-        if(schetchik < 0)
+    if(schetchik < 0)
     {
-        printf(ANSI_COLOR_RED "\nCAPACITY STRONGER THAT YOU THINK /(modul of capasity)\\\n----------------------------------------\nin line (%d)\n----------------------------------------\nand\n----------------------------------------\nfile <%s>\n----------------------------------------\n" ANSI_COLOR_RESET, num_line - 1, file_n);
+        printf(ANSI_COLOR_RED "\nCAPACITY STRONGER THAT YOU THINK /(modul of capasity)%s:%d\n", file_n, num_line);
 
         schetchik = labs(data->capacity) +2;
         data->capacity = schetchik + 4;
@@ -72,7 +69,7 @@ void defence_of_capacity(struct stk* data, int num_line, const char* file_n)
 }
 
 
-void def_size_capacity(struct stk* data, int num_line, const char* file_n)
+void def_size_capacity(struct stk* data, int /*num_line*/, const char* /*file_n*/)
 {
     ssize_t def_capacity = (data->capacity);
 
@@ -82,7 +79,7 @@ void def_size_capacity(struct stk* data, int num_line, const char* file_n)
         while((data->size) >= def_capacity)
             def_capacity = def_capacity * 2;
 
-        tip_lac* def_stack = (tip_lac*) realloc(data->stack, def_capacity * sizeof(tip_lac) + 2);
+        tip_lac* def_stack = (tip_lac*) realloc(data->stack, (unsigned long)def_capacity * sizeof(tip_lac) + 2);
         
         data->stack = def_stack;
 
@@ -98,13 +95,13 @@ void def_size_capacity(struct stk* data, int num_line, const char* file_n)
 void dinamayk_def(struct stk* data, int num_line, const char* file_n)
 {
     if((data->stack[0] != 23) || (data->stack[data->capacity + 1] != 7557))
-        fprintf(stderr, "\nRUNRUNRUN KANAREYKA in [][][] IS REACT\n", num_line, file_n);
+        fprintf(stderr, "\nKANAREYKA in struct IS REACT %s:%d\n", file_n, num_line);
 }
 
 void double_kanar(struct stk* data, int num_line, const char* file_n)
 {
     if((data->Kana_ != 914) || (data->_reikA != 419))
-        fprintf(stderr, "\nKANAREYKA in struct IS REACT\n", num_line, file_n);
+        fprintf(stderr, "\nKANAREYKA in struct IS REACT %s:%d\n", file_n, num_line);
 }
 
 // void P_O_I_S_O_N(struct stk* data)
@@ -119,12 +116,11 @@ uintptr_t hash_hash(struct stk* data)
 
     uintptr_t znacheni_a = 0;
 
-    ssize_t i = data->size;
 
-    for(i; i > 0; --i)
-        znacheni_a = znacheni_a + data->stack[i] * 2;
+    for(ssize_t i = data->size; i > 0; --i)
+        znacheni_a = znacheni_a + (uintptr_t)data->stack[i] * 2;
 
-    znacheni_a = adr_ptr * 23 - (znacheni_a * data->size) + data->Kana_ - data->_reikA * 8 + i;
+    znacheni_a = adr_ptr * 23 - (znacheni_a * (uintptr_t)data->size) + (uintptr_t)data->Kana_ - (uintptr_t)data->_reikA * 8;
 
     return znacheni_a;
 }
