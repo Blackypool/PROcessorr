@@ -10,7 +10,7 @@ enum for_user
 };
 
 #define FILE_for_SPU "quadr_into_txt.txt" 
-#define FILE_for_ASM "quadratic.asm"
+#define FILE_for_ASM "simple_art.asm"
 
 #include <stdio.h>
 #include <string.h>
