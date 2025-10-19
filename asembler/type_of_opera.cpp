@@ -52,7 +52,7 @@ int* what_the_operation(char** str_str, int lines, int *black_metka)
             hranilische[sche] = need_param(str_str, lin, black_metka, oper_find);
         }
 
-        //DEBUG;
+        DEBUG;
 
         ++sche;
     }
