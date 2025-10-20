@@ -9,9 +9,9 @@
 
 #define KADROV 23
 
-#define REPEAT_RAZ 3
+#define REPEAT_RAZ 5
 
-#define PING 20000
+#define PING 50000
 
 #define LEN_FILE_MAX (7 + 3)
 

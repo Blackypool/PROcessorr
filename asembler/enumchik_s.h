@@ -3,7 +3,7 @@
 
 enum for_user
 {
-    OPE_rativ_ka = 8000000,
+    OPE_rativ_ka = 28000,
     STK_capacity = 10,
     RET_capacity = 5,
     NUM_label_ss = 7
@@ -26,7 +26,7 @@ enum for_user
 
 #include "constructor.h"
 #include "push_pop.h"
-#include "file_commands.h"
+// #include "file_commands.h"
 
 typedef int ans_typ;
 

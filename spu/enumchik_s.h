@@ -3,7 +3,7 @@
 
 enum for_user
 {
-    OPE_rativ_ka = 8000000,
+    OPE_rativ_ka = 28000,
     STK_capacity = 10,
     RET_capacity = 5,
     NUM_label_ss = 7

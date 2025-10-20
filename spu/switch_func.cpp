@@ -206,10 +206,11 @@ void for_functions(ARG_FFC)
             {
                 (*line)++;
 
-                useconds_t for_sl = 0 * (useconds_t)str_str[*line];
+                useconds_t for_sl = (useconds_t)str_str[*line];
                 
                 usleep(for_sl);
             }
+            break;
         
         default: break;
 
@@ -245,9 +246,9 @@ void work_with_memory (ARG_WWM)
 
         case CMD_DRAW_:
             {
-                printf("DRAW WORKING");
+                //printf("DRAW WORKING");
                 
-                for(int i = 0; i < OPE_rativ_ka; ++i)
+                for(int i = 0; i < OPE_rativ_ka; i++)
                     printf("%c", push_memory[i]);
             }
 
