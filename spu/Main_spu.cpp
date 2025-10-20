@@ -17,15 +17,15 @@ int main()
     int* str_str = read_er(&lines);
     ASSERTICHE(str_str, 0);
 
-    for(int i = 0; i < lines; ++i)
-        printf("bite_code[%d] = {%d}\n", i, str_str[i]);
+    // for(int i = 0; i < lines; ++i)
+    //     printf("bite_code[%d] = {%d}\n", i, str_str[i]);
 
     memory_crafter(&spu);
 
     lego_stack(&spu.start_stk, STK_capacity);
     lego_stack(&spu.stk_ret, RET_capacity);
 
-    ans_typ answer = 0;
+    ans_typ answer = SU_CC_ESS;
     for(int line_now = 0; line_now < lines && answer != CMD_HLT_ && answer != ER_R_OR; ++line_now)
     {
         answer = resume_calc(&spu.start_stk, &spu.stk_ret, &line_now, str_str, lines, spu.ram, 0);
@@ -88,18 +88,17 @@ int resume_calc(TO_MUSH_ARG)
 
     FOR_SW(line);
 
+    LOGIC(_REG_,    registors);
 
-    LOGIC(_CALC_,   calcc_func);
+    LOGIC(_MEMOR_,  work_with_memory);
 
     LOGIC(_BASE_,   steck_fucn);
 
-    LOGIC(_REG_,    registors);
-
-    LOGIC(_GAMMY_,  jump_mishki_gammy);
-
     LOGIC(_FUNCN_,  for_functions);
 
-    LOGIC(_MEMOR_,  work_with_memory);
+    LOGIC(_CALC_,   calcc_func);
+
+    LOGIC(_GAMMY_,  jump_mishki_gammy);
 
     LOGIC(CMD_INT_, in_func);
     

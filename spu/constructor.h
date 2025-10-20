@@ -10,8 +10,8 @@
 #include "colores.h"
 //#include "dimond.h"
 
-#include "prAverti.h"
-//#include "Not_praverti.h"
+//#include "prAverti.h"
+#include "Not_praverti.h"
 
 #define  L_F __LINE__, __FILE__
 

@@ -16,7 +16,7 @@
             int v_2 = stack_pop(data); \
             if(uslovie)\
                 *line = str_str[*line];    \
-            else *line++//;\
+            else *line++;\
             //printf("JUMP||line[%d] = {%d}", *line, uslovie)
 
 

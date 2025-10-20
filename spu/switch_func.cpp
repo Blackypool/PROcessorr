@@ -206,9 +206,9 @@ void for_functions(ARG_FFC)
             {
                 (*line)++;
 
-                unsigned int for_sl = (unsigned int)str_str[*line] / 1000;
+                useconds_t for_sl = 0 * (useconds_t)str_str[*line];
                 
-                sleep(for_sl);
+                usleep(for_sl);
             }
         
         default: break;
@@ -226,7 +226,9 @@ void work_with_memory (ARG_WWM)
                 (*line)++;
                 int xx = str_str[*line];
 
-                push_memory[xx] = stack_pop(data);
+                int ptr = data->PuSh_rEg[xx];
+
+                push_memory[ptr] = stack_pop(data);
             }
             break;
 
@@ -235,7 +237,9 @@ void work_with_memory (ARG_WWM)
                 (*line)++;
                 int xx = str_str[*line];
 
-                stack_push(data, push_memory[xx]);
+                int ptr = data->PuSh_rEg[xx];
+
+                stack_push(data, push_memory[ptr]);
             }
             break;
 
@@ -244,7 +248,7 @@ void work_with_memory (ARG_WWM)
                 printf("DRAW WORKING");
                 
                 for(int i = 0; i < OPE_rativ_ka; ++i)
-                    printf("%d", push_memory[i]);
+                    printf("%c", push_memory[i]);
             }
 
         default: break;
@@ -258,6 +262,6 @@ void in_func(ARG_INF)
 
     int value = 0;
     scanf("%d", &value);
-    
+
     stack_push(data, value);
 }

@@ -8,25 +8,25 @@ static const struct operatio oper[] = {
          {"DIV",  CMD_DIV_,  3, 0},  //3
           {"POW",  CMD_POW_,  3, 0},  //4
            {"SQRT", CMD_SQRT_, 4, 0},  //5
-                                {"PUSH", CMD_PUSH_, 4, 1},  //6
-                                 {"OUT",  CMD_OUT_,  3, 0},  //7
-                                  {"HLT",  CMD_HLT_,  3, 0},  //8
-           {"POPREG", CMD_POPREG_, 6, 1},  //9
-            {"PUSHREG", CMD_PSHREG_, 6, 1},  //10
-                                     {"JMP", CMD_JMP_, 3, 1},   //11
-                                      {"JBE", CMD_JBE_, 3, 1},   //12
-                                       {"JB",  CMD_JB_,  2, 1},   //13
-                                        {"JAE", CMD_JAE_, 3, 1},   //14
-                                         {"JA",  CMD_JA_,  2, 1},   //15
-                                          {"JNE", CMD_JNE_, 3, 1},   //16
-                                           {"JE",  CMD_JE_,  2, 1},   //17
-                        {"RET",  CMD_RET_, 3, 0},  //18
-                         {"CALL", CMD_CALL_, 4, 1}, //19
-                                              {"POPM",  CMD_POPM_, 4, 1},//20
-                                               {"PUSHM", CMD_PUSHM_, 5, 1},//21
-                            {"INT",  CMD_INT_,  3, 0}, //22
-                             {"SLEEP",CMD_SLEP_, 5, 1}, //23
-                              {"DRAW", CMD_DRAW_, 4, 0}  //24
+                                    {"POPREG", CMD_POPREG_, 6, 1},  //6
+                                     {"PUSHREG", CMD_PSHREG_, 7, 1}, //7
+            {"POPM",  CMD_POPM_,  4, 1}, //8
+             {"PUSHM", CMD_PUSHM_, 5, 1}, //9
+                                        {"PUSH", CMD_PUSH_, 4, 1},     //10
+                                         {"OUT",  CMD_OUT_,  3, 0},     //11
+                                          {"HLT",  CMD_HLT_,  3, 0},     //12
+                   {"INT",  CMD_INT_,  3, 0}, //13
+                    {"SLEEP",CMD_SLEP_, 5, 1}, //14
+                     {"DRAW", CMD_DRAW_, 4, 0}, //15
+                                              {"JMP", CMD_JMP_, 3, 1},      //16
+                                               {"JBE", CMD_JBE_, 3, 1},      //17
+                                                {"JB",  CMD_JB_,  2, 1},      //18
+                                                 {"JAE", CMD_JAE_, 3, 1},      //19
+                                                  {"JA",  CMD_JA_,  2, 1},      //20
+                                                   {"JNE", CMD_JNE_, 3, 1},      //21
+                                                    {"JE",  CMD_JE_,  2, 1},      //22
+                             {"RET",   CMD_RET_, 3, 0},  //23
+                              {"CALL", CMD_CALL_, 4, 1},  //24
                     
                                        };
 
@@ -51,7 +51,7 @@ int* what_the_operation(char** str_str, int lines, int *black_metka)
         
         hranilische[sche] = oper[oper_find].maska;
         
-        DEBUG;
+        //DEBUG;
 
         if ((oper[oper_find].need_param) == 1)
         {
@@ -90,10 +90,10 @@ int need_param(char** str_str, int lin, int *black_metka, int oper_find, int *ka
         return valli;
 
     char command[2] = {};
-    if (sscanf(str_str[lin] + oper[oper_find].len_len, " [%1cX]%n", command, &valli) == 2)     /////%n
+    if (sscanf(str_str[lin] + oper[oper_find].len_len, " [%1cX]%n", command, &valli) > 0)     /////%n == 2
         return command[0] - 'A';
                 
-    if(sscanf(str_str[lin] + oper[oper_find].len_len, " %1cX%n", command, &valli) > 0)//;,lmknj
+    if(sscanf(str_str[lin] + oper[oper_find].len_len, " %1cX%n", command, &valli) > 0)
         return command[0] - 'A';
     
     *kanareyka = -1;

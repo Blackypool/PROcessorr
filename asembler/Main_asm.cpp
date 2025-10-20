@@ -22,7 +22,6 @@ int main()
 
     int* hranilische = what_the_operation(a_s_m.str_str, lines_num, a_s_m.black_metka);
     ASSERTICHE(hranilische, 0);
-    //////////free
     
     int not_use_labls = 0;
     for(int i = 0; i < NUM_label_ss; ++i)
@@ -56,7 +55,7 @@ void nahui_is_compilatora(int *hranilische, size_t number_of)
 
     fwrite(hranilische, number_of, sizeof(int), fp);
       
-    // for(int i = 0; i < number_of; i++)
+    // for(size_t i = 0; i < number_of; i++)
     //     fprintf(fp, "%d\n", hranilische[i]);
 
     fclose(fp);

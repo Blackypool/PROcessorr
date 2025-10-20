@@ -3,7 +3,7 @@
 
 enum for_user
 {
-    OPE_rativ_ka = 700000,
+    OPE_rativ_ka = 8000000,
     STK_capacity = 10,
     RET_capacity = 5,
     NUM_label_ss = 7
@@ -166,5 +166,6 @@ enum er_sC
 
 #define ARG_INF \
         struct stk* data, struct stk* /*stk_ret*/, int* /*line*/, int* /*str_str*/, int /*lines_all*/, int* /*push_memory*/, int /*operation*/
+
 
 #endif

@@ -24,6 +24,7 @@ void stack_push(struct stk* data, tip_lac value)
 
 tip_lac stack_pop(struct stk* data)
 {
+    
     dinamayk_def(data, L_F);
     double_kanar(data, L_F);
 

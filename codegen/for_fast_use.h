@@ -7,13 +7,13 @@
 
 #define NAME_F "z_%d.txt"
 
-#define KADROV 2
+#define KADROV 23
 
-#define REPEAT_RAZ 2
+#define REPEAT_RAZ 3
 
-#define PING 2 // 10^-3
+#define PING 20000
 
-#define LEN_FILE_MAX (7 + 2)
+#define LEN_FILE_MAX (7 + 3)
 
 
 #endif
