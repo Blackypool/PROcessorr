@@ -11,6 +11,7 @@ int resume_calc(TO_MUSH_ARG);
 
 int main()
 {
+    //system("afplay Hitsujibungaku.mp3");
     struct SPU spu = {};
     int lines = 0;
 

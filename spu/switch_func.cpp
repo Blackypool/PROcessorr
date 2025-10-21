@@ -248,8 +248,9 @@ void work_with_memory (ARG_WWM)
             {
                 //printf("DRAW WORKING");
                 
-                for(int i = 0; i < OPE_rativ_ka; i++)
-                    printf("%c", push_memory[i]);
+                fwrite(push_memory, sizeof(int), OPE_rativ_ka, stdout);
+
+                printf("\n");
             }
 
         default: break;

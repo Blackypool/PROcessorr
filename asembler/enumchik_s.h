@@ -26,7 +26,7 @@ enum for_user
 
 #include "constructor.h"
 #include "push_pop.h"
-// #include "file_commands.h"
+#include "file_commands.h"
 
 typedef int ans_typ;
 
